@@ -18,6 +18,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"strings"
 
 	"github.com/sirupsen/logrus"
 )
@@ -41,10 +42,10 @@ func (formatter *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
 	}
 
 	var buffer bytes.Buffer
-	fmt.Fprintf(&buffer, "%s [%s] [%s] [%s]", content.Time, content.Level, content.File, content.Function)
-	fmt.Fprintf(&buffer, " %s", content.Message)
+	fmt.Fprintf(&buffer, "%s\t%s\t%s", content.Time, strings.ToUpper(content.Level), content.File)
+	fmt.Fprintf(&buffer, "\t%s", content.Message)
 	if len(entry.Data) > 0 && entry.Data[DataKey] != nil {
-		fmt.Fprintf(&buffer, " %s", slice2String(entry.Data[DataKey].([]interface{})))
+		fmt.Fprintf(&buffer, "\t%s", slice2String(entry.Data[DataKey].([]interface{})))
 	}
 	fmt.Fprint(&buffer, "\n")
 	if content.Stack != nil {
