@@ -46,19 +46,28 @@ const (
 	ThirdServiceError  = 1000003
 	ParamsLost         = 1000100
 	ParamsNotValid     = 1000101
-	ResouceNotExist    = 1000102
+	ResourceNotExist   = 1000102
 	DataOutOfThreshold = 1000103
-	FrequentOpration   = 1000104
-	RepeatOpration     = 1000105
+	FrequentOptation   = 1000104
+	RepeatOptation     = 1000105
 	IllegalRequest     = 1000106
 	DataHasExists      = 1000107
 	PermissionDenied   = 1000108
 	AntiCheating       = 1000109
-	UnsupportClient    = 1000110
-	UnsupportOs        = 1000111
+	UnsupportedClient  = 1000110
+	UnsupportedOs      = 1000111
 	AccountFrozen      = 1000200
 	AccountLock        = 1000201
 	TokenError         = 1000202
+
+	ParamFormatErr       = 1001
+	RequestErr           = 1002
+	InterServerException = 1003
+	RefreshSrcErr        = 1004
+	UpdateFileErr        = 1005
+	SourceErr            = 1006
+	StreamIllegal        = 1007
+	AlgorithmErr         = 1008
 )
 
 var errorMessages = map[int]string{
@@ -68,19 +77,28 @@ var errorMessages = map[int]string{
 	ThirdServiceError:  "服务器内部错误",
 	ParamsLost:         "请求参数缺失",
 	ParamsNotValid:     "存在不合法的请求参数",
-	ResouceNotExist:    "资源不存在",
+	ResourceNotExist:   "资源不存在",
 	DataOutOfThreshold: "数据超过阈值",
-	FrequentOpration:   "操作频繁",
-	RepeatOpration:     "重复操作",
+	FrequentOptation:   "操作频繁",
+	RepeatOptation:     "重复操作",
 	IllegalRequest:     "非法请求",
 	DataHasExists:      "数据已存在",
 	PermissionDenied:   "权限不足",
 	AntiCheating:       "请求被拦截",
-	UnsupportClient:    "不支持的客户端",
-	UnsupportOs:        "不支持的操作系统",
+	UnsupportedClient:  "不支持的客户端",
+	UnsupportedOs:      "不支持的操作系统",
 	AccountFrozen:      "账号异常-需打开安全中心申诉",
 	AccountLock:        "账号异常-需打开安全中心解锁",
 	TokenError:         "token校验失败",
+
+	ParamFormatErr:       "参数错误",
+	RequestErr:           "请求异常",
+	InterServerException: "内部服务异常",
+	RefreshSrcErr:        "获取刷新地址异常",
+	UpdateFileErr:        "上传文件异常",
+	SourceErr:            "图片等资源异常",
+	StreamIllegal:        "流文件不合法",
+	AlgorithmErr:         "算法编码错误",
 }
 
 var errorStatus = map[int]int{
@@ -91,6 +109,7 @@ var errorStatus = map[int]int{
 	ParamsLost:        http.StatusBadRequest,
 	ParamsNotValid:    http.StatusBadRequest,
 	TokenError:        http.StatusBadRequest,
+	ParamFormatErr:    http.StatusBadRequest,
 }
 
 // Error 用来将运行错误包装成标准协议的错误
