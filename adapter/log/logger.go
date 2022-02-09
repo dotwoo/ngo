@@ -225,13 +225,13 @@ type Options struct {
 	PackageLevel    map[string]string
 	packageLogLevel map[string]logrus.Level
 
-	// 默认7天
-	MaxAge time.Duration
+	// 默认4天的个数 96个,结合每个日志大小默认为 100m 保证日志不超过 10g
+	MaxCount uint
 
 	// 默认1天
 	RotationTime time.Duration
 
-	// 单位MB，默认1024
+	// 单位MB，默认100
 	RotationSize int64
 }
 
@@ -242,9 +242,9 @@ func NewDefaultOptions() *Options {
 		ErrorPath:       "",
 		WritableStack:   false,
 		Format:          formatTXT,
-		MaxAge:          time.Hour * 24 * 7,
+		MaxCount:        96,
 		RotationTime:    time.Hour * 24,
-		RotationSize:    1024,
+		RotationSize:    100,
 		NoFile:          true,
 		PackageLevel:    make(map[string]string),
 		packageLogLevel: make(map[string]logrus.Level),
@@ -363,7 +363,7 @@ func newRotateLog(opt *Options, p, suffix string) (io.Writer, error) {
 		rotatelogs.WithClock(rotatelogs.Local),
 		rotatelogs.WithLinkName(linkName),
 		rotatelogs.WithRotationTime(opt.RotationTime),
-		rotatelogs.WithMaxAge(opt.MaxAge),
+		rotatelogs.WithRotationCount(opt.MaxCount),
 		rotatelogs.WithRotationSize(opt.RotationSize*1024*1024),
 	)
 }
