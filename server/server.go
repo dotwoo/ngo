@@ -28,6 +28,7 @@ import (
 	"time"
 
 	"github.com/NetEase-Media/ngo/adapter/sentinel"
+	"github.com/NetEase-Media/ngo/g"
 
 	"github.com/NetEase-Media/ngo/adapter/config"
 	"github.com/NetEase-Media/ngo/adapter/log"
@@ -47,6 +48,7 @@ import (
 // 命令行参数
 var (
 	configPath string
+	version    bool
 	// 配置目录指定, 如果没指定 configPath，则会加载此目录下的app.yaml
 	//configDir string
 	ngofs = flag.NewFlagSet("ngoConfig", flag.ContinueOnError)
@@ -54,6 +56,7 @@ var (
 
 func initFlag() {
 	ngofs.StringVar(&configPath, "c", "a", "config file path")
+	ngofs.BoolVar(&version, "version", false, "show version")
 	//ngofs.StringVar(&configDir, "d", "", "config file directory")
 }
 
@@ -278,6 +281,9 @@ func Init() *Server {
 	runtime.GOMAXPROCS(runtime.GOMAXPROCS(0) * 2)
 
 	ngofs.Parse(os.Args[1:])
+	if version {
+		g.PrintVersion()
+	}
 
 	initConfig()
 
