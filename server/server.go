@@ -277,9 +277,6 @@ func Init() *Server {
 		}
 	}()
 
-	// 设置procs的数量为容器cpu的2倍
-	runtime.GOMAXPROCS(runtime.GOMAXPROCS(0) * 2)
-
 	ngofs.Parse(os.Args[1:])
 	if version {
 		g.PrintVersion()
@@ -295,6 +292,8 @@ func Init() *Server {
 	util.CheckError(err)
 
 	server = newServer(opt)
+	// 设置procs的数量为容器cpu的2倍
+	runtime.GOMAXPROCS(runtime.GOMAXPROCS(0) * 2)
 	return server
 }
 

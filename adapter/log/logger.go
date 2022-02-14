@@ -336,8 +336,10 @@ func setOutput(opt *Options, l *logrus.Logger) error {
 		l.SetOutput(rlAll)
 
 		// 错误日志输出
-		rlError, err := newRotateLog(opt, opt.ErrorPath, "error.log")
-		l.AddHook(&errorHook{writer: rlError})
+		if opt.ErrorPath != "" {
+			rlError, err := newRotateLog(opt, opt.ErrorPath, "error.log")
+			l.AddHook(&errorHook{writer: rlError})
+		}
 	}
 
 	// 错误日志上报哨兵

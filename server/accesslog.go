@@ -34,9 +34,9 @@ type AccessLogMwOptions struct {
 	Path            string
 	FilePathPattern string // 定义文件路径名称格式
 	NoFile          bool
-	MaxAge          time.Duration // 默认7天
-	RotationTime    time.Duration // 默认1天
-	RotationSize    int64         // 单位MB，默认1024
+	MaxCount        uint          // 默认3*24
+	RotationTime    time.Duration // 默认1小时
+	RotationSize    int64         // 单位MB，默认100
 }
 
 func NewDefaultAccessLogOptions() *AccessLogMwOptions {
@@ -46,9 +46,9 @@ func NewDefaultAccessLogOptions() *AccessLogMwOptions {
 		Path:            "",
 		FilePathPattern: "",
 		NoFile:          true,
-		MaxAge:          time.Hour * 24 * 7,
-		RotationTime:    time.Hour * 24,
-		RotationSize:    1024,
+		MaxCount:        72,
+		RotationTime:    time.Hour,
+		RotationSize:    100,
 	}
 }
 
@@ -90,7 +90,7 @@ func newRotateLog(opt *AccessLogMwOptions) (io.Writer, error) {
 		rotatelogs.WithClock(rotatelogs.Local),
 		rotatelogs.WithLinkName(linkName),
 		rotatelogs.WithRotationTime(opt.RotationTime),
-		rotatelogs.WithMaxAge(opt.MaxAge),
+		rotatelogs.WithRotationCount(opt.MaxCount),
 		rotatelogs.WithRotationSize(opt.RotationSize*1024*1024),
 	)
 }
