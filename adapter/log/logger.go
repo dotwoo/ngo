@@ -337,7 +337,7 @@ func setOutput(opt *Options, l *logrus.Logger) error {
 
 		// 错误日志输出
 		if opt.ErrorPath != "" {
-			rlError, err := newRotateLog(opt, opt.ErrorPath, "error.log")
+			rlError, _ := newRotateLog(opt, opt.ErrorPath, "error.log")
 			l.AddHook(&errorHook{writer: rlError})
 		}
 	}
@@ -352,7 +352,7 @@ func newRotateLog(opt *Options, p, suffix string) (io.Writer, error) {
 	if err != nil {
 		return nil, err
 	}
-	//有需求要自定义filepattern
+	// 有需求要自定义filepattern
 	var pathPattern string
 	if len(opt.FilePathPattern) > 3 {
 		pathPattern = opt.FilePathPattern
@@ -406,10 +406,10 @@ func GetLogger(name string) *NgoLogger {
 }
 
 // init 保证单测中使用的logger字段合法
-func init() {
+func init() { //nolint:gochecknoinits
 	options := []Options{*NewDefaultOptions()}
 	options[0].WritableStack = true
-	//options[0].PackageLevel["gorm.io/gorm"] = "info"
+	// options[0].PackageLevel["gorm.io/gorm"] = "info"
 	Init(options, "appName")
 }
 

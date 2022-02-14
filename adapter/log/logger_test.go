@@ -30,9 +30,9 @@ func TestInit(t *testing.T) {
 		ErrorPath:     "",
 		WritableStack: true,
 		Format:        formatTXT,
-		MaxAge:        time.Hour * 24 * 7,
-		RotationTime:  time.Hour * 24,
-		RotationSize:  1024,
+		MaxCount:      24 * 7,
+		RotationTime:  time.Hour,
+		RotationSize:  100,
 		NoFile:        true,
 	}
 
@@ -98,9 +98,9 @@ func initWithOpts(writableStack bool) {
 		ErrorPath:     "",
 		WritableStack: writableStack,
 		Format:        formatTXT,
-		MaxAge:        time.Hour * 24 * 7,
-		RotationTime:  time.Hour * 24,
-		RotationSize:  1024,
+		MaxCount:      24 * 7,
+		RotationTime:  time.Hour,
+		RotationSize:  100,
 		NoFile:        true,
 	}
 
