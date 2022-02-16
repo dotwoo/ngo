@@ -104,7 +104,6 @@ func Init(opts []Options) (err error) {
 
 	if len(opts) == 0 {
 		// 如果没有redis配置则跳过
-		log.Info("empty redis config, so skip init")
 		return
 	}
 

@@ -14,14 +14,9 @@
 
 package db
 
-import (
-	"github.com/NetEase-Media/ngo/adapter/log"
-)
-
 func Init(opts []*Options) error {
 	if len(opts) == 0 {
 		// 如果没有db配置则跳过
-		log.Info("empty db config, so skip init")
 		return nil
 	}
 

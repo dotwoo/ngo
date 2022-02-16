@@ -108,7 +108,6 @@ func NewDefaultOptions() *Options {
 
 func Init(opts []*Options) error {
 	if len(opts) == 0 {
-		log.Info("empty kafka config, so skip init")
 		return nil
 	}
 	sarama.Logger = New()
