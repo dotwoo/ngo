@@ -22,7 +22,7 @@ import (
 // HttpBody 是写入http body的json数据结构
 type HttpBody struct {
 	Code    int         `json:"code"`
-	Message string      `json:"message"`
+	Message string      `json:"msg"`
 	Data    interface{} `json:"data"`
 }
 
