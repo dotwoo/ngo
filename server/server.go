@@ -276,6 +276,8 @@ func Init() *Server {
 		}
 	}()
 
+	ngofs.Parse(os.Args[1:])
+
 	initConfig()
 
 	initComponents()
