@@ -6,11 +6,10 @@ BUILDTIME=$(shell date '+%Y-%m-%d %H:%M:%S %z')
 Commit=$(shell git rev-parse --short HEAD)
 TARGET=${NAME}-${SHORT_VERSION}
 ifeq (${DF},)
-        DF := Dockerfile
+        DF := build/Dockerfile
 endif
 
 GOBUILD=CGO_CFLAGS=-Wno-undef-prefix \
-        CGO_ENABLED=1 \
         go build -ldflags '-w -s\
         -X "github.com/NetEase-Media/ngo/g.Version=$(VERSION)" \
         -X "github.com/NetEase-Media/ngo/g.BuildTime=$(BUILDTIME)" \
@@ -46,7 +45,7 @@ lint:
 run:
 	/$(NAME) -c ./app.yaml
 
-build-version:
+docker:
 	docker build -f ${DF} -t $(NAME):$(VERSION) ./
 
 mod:
