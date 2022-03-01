@@ -20,3 +20,4 @@ cscope.*
 vendor/
 logs/
 *.log*
+ngo
