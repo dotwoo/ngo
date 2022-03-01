@@ -27,11 +27,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/NetEase-Media/ngo/adapter/sentinel"
-	"github.com/NetEase-Media/ngo/g"
-
 	"github.com/NetEase-Media/ngo/adapter/config"
 	"github.com/NetEase-Media/ngo/adapter/log"
+	"github.com/NetEase-Media/ngo/adapter/sentinel"
 	"github.com/NetEase-Media/ngo/adapter/util"
 	"github.com/NetEase-Media/ngo/adapter/xxljob"
 	"github.com/NetEase-Media/ngo/client/db"
@@ -56,6 +54,7 @@ var (
 
 func initFlag() {
 	ngofs.StringVar(&configPath, "c", "a", "config file path")
+	// 占用 verison 参数用于打印版本信息
 	ngofs.BoolVar(&version, "version", false, "show version")
 	//ngofs.StringVar(&configDir, "d", "", "config file directory")
 }
@@ -276,11 +275,6 @@ func Init() *Server {
 			log.Panic(err)
 		}
 	}()
-
-	ngofs.Parse(os.Args[1:])
-	if version {
-		g.PrintVersion()
-	}
 
 	initConfig()
 

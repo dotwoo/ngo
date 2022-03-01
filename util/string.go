@@ -71,6 +71,16 @@ func Split(s string, symbol Symbol) []string {
 	return r
 }
 
+// Containt 判断字符串是否在列表里
+func Containt(list []string, s string) bool {
+	for _, v := range list {
+		if v == s {
+			return true
+		}
+	}
+	return false
+}
+
 // SplitNoRepeat 无重复的数组
 func SplitNoRepeat(s string, symbol Symbol) []string {
 	var r []string = make([]string, 0)

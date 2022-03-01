@@ -3,6 +3,8 @@ package g
 import (
 	"fmt"
 	"os"
+
+	"github.com/NetEase-Media/ngo/util"
 )
 
 // Version 版本信息
@@ -17,6 +19,9 @@ var (
 
 // PrintVersion 版本打印
 func PrintVersion() {
+	if !util.Containt(os.Args[1:], "-version") {
+		return
+	}
 	fmt.Println("program:", ProgName)
 	fmt.Println("version:", Version)
 	fmt.Println("commit:", Commit)
