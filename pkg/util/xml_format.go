@@ -16,27 +16,21 @@ package util
 
 import (
 	"encoding/xml"
-
-	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 )
 
 // xml序列化：将struct类型序列化成xml类型。 若成功，则输出xml的字符串；否则输出""
 // 为了输出方便，统一输出为string类型；若结果需要别的类型([]byte),请自己转换
-func MarshalIndent(v interface{}, prefix, indent string) string {
+func MarshalIndent(v interface{}, prefix, indent string) (string, error) {
 	data, err := xml.MarshalIndent(v, prefix, indent)
 	if err != nil {
-		log.Info("xml不能序列化")
-		return ""
+		return "", err
 	}
-	return string(data)
+	return string(data), nil
 }
 
 // xml的反序列化： 将xml字符串转换成序列化。 若反序列化成功，则将数据放到v中；否则v中无数据
-func UnmarshalIndent(str string, v interface{}) {
+func UnmarshalIndent(str string, v interface{}) error {
 	data := []byte(str)
 	err := xml.Unmarshal(data, v)
-	if err != nil {
-		log.Info("xml不能反序列化")
-		return
-	}
+	return err
 }

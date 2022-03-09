@@ -26,7 +26,7 @@ import (
 	"gorm.io/gorm"
 	dblogger "gorm.io/gorm/logger"
 
-	"github.com/NetEase-Media/ngo/pkg/adapter/util"
+	"github.com/NetEase-Media/ngo/pkg/util"
 )
 
 var (

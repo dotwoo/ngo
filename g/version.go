@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/NetEase-Media/ngo/util"
+	"github.com/NetEase-Media/ngo/pkg/util"
 )
 
 // Version 版本信息

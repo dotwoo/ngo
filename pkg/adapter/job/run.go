@@ -18,7 +18,7 @@ import (
 	"os"
 
 	"github.com/NetEase-Media/ngo/pkg/adapter/config"
-	"github.com/NetEase-Media/ngo/pkg/adapter/util"
+	"github.com/NetEase-Media/ngo/pkg/util"
 )
 
 // Run 运行函数并退出进程

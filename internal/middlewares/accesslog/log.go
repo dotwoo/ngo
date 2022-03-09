@@ -29,7 +29,7 @@ import (
 
 	"github.com/valyala/bytebufferpool"
 
-	"github.com/NetEase-Media/ngo/pkg/adapter/util"
+	"github.com/NetEase-Media/ngo/pkg/util"
 
 	"github.com/gin-gonic/gin"
 )

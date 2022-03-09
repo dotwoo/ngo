@@ -25,7 +25,7 @@ import (
 
 	"github.com/hashicorp/go-multierror"
 
-	"github.com/NetEase-Media/ngo/util"
+	"github.com/NetEase-Media/ngo/pkg/util"
 	"github.com/go-redis/redis/v8"
 )
 

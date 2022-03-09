@@ -19,7 +19,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/NetEase-Media/ngo/pkg/adapter/util"
+	"github.com/NetEase-Media/ngo/pkg/util"
 	"github.com/sirupsen/logrus"
 )
 

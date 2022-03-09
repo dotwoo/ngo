@@ -20,8 +20,8 @@ import (
 	"time"
 
 	"github.com/NetEase-Media/ngo/pkg/adapter/log"
-	"github.com/NetEase-Media/ngo/pkg/adapter/util"
 	"github.com/NetEase-Media/ngo/pkg/client/httplib"
+	"github.com/NetEase-Media/ngo/pkg/util"
 )
 
 const (

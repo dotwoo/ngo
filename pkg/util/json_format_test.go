@@ -38,14 +38,14 @@ func TestMarshal(t *testing.T) {
 		Sex:  "男",
 	}
 	expect := "{\"name\":\"陈奕迅\",\"age\":47,\"high\":\"173cm\",\"sex\":\"男\"}"
-	actual := Marshal(stu)
+	actual, _ := Marshal(stu)
 	assert.Equal(t, expect, actual, "json序列化不符合预期")
 }
 
 //序列化失败,err!=nil
 func TestMarshalErr(t *testing.T) {
 	c := make(chan int, 1)
-	cur := Marshal(c)
+	cur, _ := Marshal(c)
 	assert.Equal(t, "", cur, "")
 }
 

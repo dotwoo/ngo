@@ -15,22 +15,19 @@
 package util
 
 import (
-	"sync"
+	"encoding/json"
 )
 
-// GoN 在后台使用goroutine启动多个函数，并等待全部返回
-func GoN(functions ...func()) {
-	if len(functions) == 0 {
-		return
-	}
+// json序列化:将struct类型转换成string类型。 若不能序列化，返回""; 否则返回序列化后的string类型结果
+// 为了输出方便，统一输出为string类型；若结果需要别的类型([]byte),请自己转换
+func Marshal(str interface{}) (string, error) {
+	ret, err := json.Marshal(str)
+	return string(ret), err
+}
 
-	var wg sync.WaitGroup
-	for _, function := range functions {
-		wg.Add(1)
-		go func(f func()) {
-			defer wg.Done()
-			f()
-		}(function)
-	}
-	wg.Wait()
+// json反序列化.将字符串转换成struct格式  若反序列化成功，则装入v中；不成功，则v中无数据
+func Unmarshal(str string, v interface{}) error {
+	data := []byte(str)
+	err := json.Unmarshal(data, v)
+	return err
 }

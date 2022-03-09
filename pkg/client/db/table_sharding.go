@@ -18,7 +18,7 @@ import (
 	"math"
 	"strconv"
 
-	"github.com/NetEase-Media/ngo/util/murmur3"
+	"github.com/NetEase-Media/ngo/pkg/util/murmur3"
 )
 
 const (

@@ -32,7 +32,6 @@ import (
 	"github.com/NetEase-Media/ngo/pkg/adapter/config"
 	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 	"github.com/NetEase-Media/ngo/pkg/adapter/sentinel"
-	"github.com/NetEase-Media/ngo/pkg/adapter/util"
 	"github.com/NetEase-Media/ngo/pkg/adapter/xxljob"
 	"github.com/NetEase-Media/ngo/pkg/client/db"
 	"github.com/NetEase-Media/ngo/pkg/client/httplib"
@@ -41,6 +40,7 @@ import (
 	"github.com/NetEase-Media/ngo/pkg/client/multicache"
 	"github.com/NetEase-Media/ngo/pkg/client/redis"
 	"github.com/NetEase-Media/ngo/pkg/dlock"
+	"github.com/NetEase-Media/ngo/pkg/util"
 	"github.com/gin-gonic/gin"
 	_ "go.uber.org/automaxprocs"
 )

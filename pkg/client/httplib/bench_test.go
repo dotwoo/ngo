@@ -20,7 +20,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/NetEase-Media/ngo/pkg/adapter/util"
+	"github.com/NetEase-Media/ngo/pkg/util"
 )
 
 func BenchmarkHTTP_1Conn_1Delay(b *testing.B) {

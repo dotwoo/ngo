@@ -24,7 +24,7 @@ import (
 	"path/filepath"
 	"strconv"
 
-	"github.com/NetEase-Media/ngo/pkg/adapter/util"
+	"github.com/NetEase-Media/ngo/pkg/util"
 	"github.com/sirupsen/logrus"
 	"github.com/xxl-job/xxl-job-executor-go"
 )

@@ -16,7 +16,25 @@ package util
 
 import (
 	"reflect"
+	"sync"
 )
+
+// GoN 在后台使用goroutine启动多个函数，并等待全部返回
+func GoN(functions ...func()) {
+	if len(functions) == 0 {
+		return
+	}
+
+	var wg sync.WaitGroup
+	for _, function := range functions {
+		wg.Add(1)
+		go func(f func()) {
+			defer wg.Done()
+			f()
+		}(function)
+	}
+	wg.Wait()
+}
 
 // CheckError 提供简介的error判断，如果err != nil则panic
 func CheckError(err error) {

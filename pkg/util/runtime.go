@@ -24,7 +24,7 @@ import (
 
 // 需要忽略的几个包名
 const (
-	utilPkgName = "github.com/NetEase-Media/ngo/pkg/adapter/util"
+	utilPkgName = "github.com/NetEase-Media/ngo/pkg/util"
 )
 
 const (

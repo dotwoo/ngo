@@ -17,9 +17,8 @@ package util
 import (
 	"encoding/xml"
 	"errors"
+	"log"
 	"testing"
-
-	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -43,13 +42,13 @@ func TestMarshalIndent(t *testing.T) {
 		Sex:  "男",
 	}
 	expected := `<Student><Name>陈奕迅</Name><Age>47</Age><High>173cm</High><Sex>男</Sex></Student>`
-	actual := MarshalIndent(stu, "", "")
+	actual, _ := MarshalIndent(stu, "", "")
 	assert.Equal(t, expected, actual, "")
 }
 
 func TestMarshalIndent_(t *testing.T) {
 	c := make(chan int, 1)
-	cur := MarshalIndent(c, "", "   ")
+	cur, _ := MarshalIndent(c, "", "   ")
 	assert.Equal(t, "", cur, "")
 }
 
@@ -110,7 +109,7 @@ func MarshalIndentHelperTest(v interface{}, prefix, indent string) string {
 	data, err := xml.MarshalIndent(v, prefix, indent)
 	err = errors.New("testxff")
 	if err != nil {
-		log.Info("xml不能序列化")
+		log.Println("xml不能序列化")
 		return ""
 	}
 	return string(data)
