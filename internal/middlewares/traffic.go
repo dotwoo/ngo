@@ -12,20 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package server
+package middlewares
 
 import (
 	"strings"
+	"sync/atomic"
 
 	"github.com/gin-gonic/gin"
 )
 
-func SemicolonMiddleware() gin.HandlerFunc {
+var requestCount int64
+
+func TrafficStopMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		rawQuery := c.Request.URL.RawQuery
-		if rawQuery != "" && strings.Contains(rawQuery, ";") {
-			c.Request.URL.RawQuery = strings.ReplaceAll(rawQuery, ";", "%3B")
+		requestUri := c.Request.RequestURI
+		defer func() {
+			if !strings.HasPrefix(requestUri, "/health") {
+				atomic.AddInt64(&requestCount, -1)
+			}
+		}()
+
+		if !strings.HasPrefix(requestUri, "/health") {
+			atomic.AddInt64(&requestCount, 1)
 		}
+
 		c.Next()
 	}
+
+}
+
+func RequestsFinished() bool {
+	return atomic.LoadInt64(&requestCount) == 0
 }

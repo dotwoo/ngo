@@ -1,3 +1,6 @@
+//go:build !race
+// +build !race
+
 // Copyright Ngo Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,43 +15,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package server
+package middlewares
 
 import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 
-	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 )
 
-func doSomething(c *gin.Context) {
-	q, _ := c.GetQuery("q")
-	log.Info(q)
-	c.String(http.StatusOK, q)
-}
-
-func TestNoSemicolon(t *testing.T) {
+func TestTrafficStop(t *testing.T) {
 	r := gin.New()
-	r.GET("/", doSomething)
+	r.Use(TrafficStopMiddleware())
+
+	r.GET("/", func(context *gin.Context) {
+		time.Sleep(1000 * time.Millisecond)
+	})
 
 	w := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "/?q=a;b;c", nil)
-	r.ServeHTTP(w, req)
+	req, _ := http.NewRequest("GET", "/", nil)
+	go r.ServeHTTP(w, req)
 
-	assert.Equal(t, "a", w.Body.String())
-}
-
-func TestSemicolon(t *testing.T) {
-	r := gin.New()
-	r.Use(SemicolonMiddleware())
-	r.GET("/", doSomething)
-
-	w := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "/?q=a;b;c", nil)
-	r.ServeHTTP(w, req)
-
-	assert.Equal(t, "a;b;c", w.Body.String())
+	time.Sleep(500 * time.Millisecond)
+	assert.False(t, requestsFinished())
+	time.Sleep(800 * time.Millisecond)
+	assert.True(t, requestsFinished())
 }

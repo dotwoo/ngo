@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package server
+package middlewares
 
 import (
 	"io"
@@ -23,7 +23,7 @@ import (
 
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 
-	"github.com/NetEase-Media/ngo/internal/server/accesslog"
+	"github.com/NetEase-Media/ngo/internal/middlewares/accesslog"
 
 	"github.com/gin-gonic/gin"
 )
@@ -32,6 +32,7 @@ type AccessLogMwOptions struct {
 	Enabled         bool
 	Pattern         string
 	Path            string
+	FileName        string
 	FilePathPattern string // 定义文件路径名称格式
 	NoFile          bool
 	MaxCount        uint          // 默认3*24
@@ -44,6 +45,7 @@ func NewDefaultAccessLogOptions() *AccessLogMwOptions {
 		Enabled:         true,
 		Pattern:         accesslog.ApacheCombinedLogFormat,
 		Path:            "",
+		FileName:        "access",
 		FilePathPattern: "",
 		NoFile:          true,
 		MaxCount:        72,
@@ -82,9 +84,9 @@ func newRotateLog(opt *AccessLogMwOptions) (io.Writer, error) {
 	if len(opt.FilePathPattern) > 3 {
 		pathPattern = opt.FilePathPattern
 	} else {
-		pathPattern = path.Join(dir, serviceOptions.AppName+".%Y-%m-%d-%H-%M.access.log")
+		pathPattern = path.Join(dir, opt.FileName+".%Y-%m-%d-%H-%M.access.log")
 	}
-	linkName := path.Join(dir, serviceOptions.AppName+".access.log")
+	linkName := path.Join(dir, opt.FileName+".access.log")
 	return rotatelogs.New(
 		pathPattern,
 		rotatelogs.WithClock(rotatelogs.Local),

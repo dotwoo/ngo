@@ -27,6 +27,8 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/NetEase-Media/ngo/internal/middlewares"
+	"github.com/NetEase-Media/ngo/internal/service"
 	"github.com/NetEase-Media/ngo/pkg/adapter/config"
 	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 	"github.com/NetEase-Media/ngo/pkg/adapter/sentinel"
@@ -62,6 +64,8 @@ func initFlag() {
 type Server struct {
 	*http.Server
 
+	serviceOptions service.ServiceOptions
+
 	opt Options
 
 	*gin.Engine
@@ -87,7 +91,7 @@ type Server struct {
 }
 
 type MiddlewaresOptions struct {
-	AccessLog *AccessLogMwOptions
+	AccessLog *middlewares.AccessLogMwOptions
 }
 
 type Options struct {
@@ -109,7 +113,7 @@ func NewDefaultOptions() *Options {
 		Mode:            gin.ReleaseMode,
 		ShutdownTimeout: time.Second * 10,
 		Middlewares: &MiddlewaresOptions{
-			AccessLog: NewDefaultAccessLogOptions(),
+			AccessLog: middlewares.NewDefaultAccessLogOptions(),
 		},
 	}
 }
@@ -147,9 +151,9 @@ func initConfig() {
 // initComponents 初始化所有外部组件
 func initComponents() {
 	// init service
-	err := config.Unmarshal("service", &serviceOptions)
+	err := config.Unmarshal("service", &server.serviceOptions)
 	util.CheckError(err)
-	err = serviceOptions.Check()
+	err = server.serviceOptions.Check()
 	util.CheckError(err)
 
 	// Init Logger
@@ -158,7 +162,7 @@ func initComponents() {
 	err = config.Unmarshal("log", &logOptions)
 	util.CheckError(err)
 	// logOptions.FileName = serviceOptions.AppName
-	err = log.Init(logOptions, serviceOptions.AppName)
+	err = log.Init(logOptions, server.serviceOptions.AppName)
 	util.CheckError(err)
 
 	// Init Redis
@@ -232,7 +236,7 @@ func initComponents() {
 	var xxljobOptions xxljob.Options
 	err = config.Unmarshal("xxljob", &xxljobOptions)
 	util.CheckError(err)
-	xxljob.Init(&xxljobOptions, serviceOptions.ClusterName)
+	xxljob.Init(&xxljobOptions, server.serviceOptions.ClusterName)
 
 }
 
@@ -298,12 +302,12 @@ func newServer(opt *Options) *Server {
 	engine := gin.New()
 
 	if opt.Middlewares.AccessLog.Enabled {
-		engine.Use(AccessLogMiddleware(opt.Middlewares.AccessLog))
+		engine.Use(middlewares.AccessLogMiddleware(opt.Middlewares.AccessLog))
 	}
 
-	engine.Use(OutermostRecover(),
-		TrafficStopMiddleware(),
-		ServerRecover(), SemicolonMiddleware())
+	engine.Use(middlewares.OutermostRecover(),
+		middlewares.TrafficStopMiddleware(),
+		middlewares.ServerRecover(), middlewares.SemicolonMiddleware())
 
 	s := &Server{
 		Server: &http.Server{
@@ -467,7 +471,7 @@ func (s *Server) offlineHandler(c *gin.Context) {
 	s.activeMutex.Lock()
 	s.active = false
 	s.activeMutex.Unlock()
-	if requestsFinished() {
+	if middlewares.RequestsFinished() {
 		c.String(http.StatusOK, "ok")
 		log.Info("[Offline] Requests finished...")
 	} else {
@@ -483,7 +487,7 @@ func (s *Server) offlineAndStopHandler(c *gin.Context) {
 	s.activeMutex.Lock()
 	s.active = false
 	s.activeMutex.Unlock()
-	if requestsFinished() {
+	if middlewares.RequestsFinished() {
 		c.String(http.StatusOK, "ok")
 		log.Info("[Offline] offline finished...")
 		ctx, cancel := context.WithTimeout(c, s.shutdownTimeout)

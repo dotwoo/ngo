@@ -12,35 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package server
+package service
 
 import (
-	"strings"
-	"sync/atomic"
+	"errors"
 
-	"github.com/gin-gonic/gin"
+	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 )
 
-var requestCount int64
-
-func TrafficStopMiddleware() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		requestUri := c.Request.RequestURI
-		defer func() {
-			if !strings.HasPrefix(requestUri, "/health") {
-				atomic.AddInt64(&requestCount, -1)
-			}
-		}()
-
-		if !strings.HasPrefix(requestUri, "/health") {
-			atomic.AddInt64(&requestCount, 1)
-		}
-
-		c.Next()
-	}
-
+// ServiceOptions 整合了服务的全局配置
+type ServiceOptions struct {
+	AppName     string
+	ClusterName string
+	Instance    string
 }
 
-func requestsFinished() bool {
-	return atomic.LoadInt64(&requestCount) == 0
+// Check 检查配置合法性
+func (o *ServiceOptions) Check() error {
+	log.Infof("check ServiceOptions: %+v", o)
+
+	if o.AppName == "" || o.ClusterName == "" {
+		return errors.New("lack of service config")
+	}
+	o.Instance = "default"
+	return nil
 }
