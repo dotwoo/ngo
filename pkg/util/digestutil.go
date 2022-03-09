@@ -15,8 +15,8 @@
 package util
 
 import (
-	"crypto/md5"
-	"crypto/sha1"
+	"crypto/md5"  //nolint gosec
+	"crypto/sha1" //nolint gosec
 	"encoding/hex"
 )
 
@@ -26,7 +26,7 @@ func Md5(text string) string {
 	if len(text) == 0 {
 		return ""
 	}
-	sum := md5.Sum([]byte(text))
+	sum := md5.Sum([]byte(text)) //nolint gosec
 	return hex.EncodeToString(sum[:])
 }
 
@@ -36,6 +36,6 @@ func Sha1(text string) string {
 	if len(text) == 0 {
 		return ""
 	}
-	sum := sha1.Sum([]byte(text))
+	sum := sha1.Sum([]byte(text)) //nolint gosec
 	return hex.EncodeToString(sum[:])
 }

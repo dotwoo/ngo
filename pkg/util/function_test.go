@@ -16,6 +16,6 @@ package util
 
 import "testing"
 
-func TestRunParalell(t *testing.T) {
-	RunParalell(3, func() {})
+func TestRunParallel(t *testing.T) {
+	RunParallel(3, func() {})
 }

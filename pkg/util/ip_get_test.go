@@ -25,7 +25,7 @@ import (
 
 func TestGetRequestIp(t *testing.T) {
 	r := gin.Context{Request: &http.Request{Header: http.Header{}}}
-	//ip为空
+	// ip为空
 	ip_ := GetRequestIp(r.Request)
 	assert.Equal(t, "", ip_)
 	r.Request.Header.Set("X-Real-IP", " 10.10.10.10 ")

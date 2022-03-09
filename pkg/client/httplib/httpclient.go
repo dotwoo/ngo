@@ -50,7 +50,7 @@ type Options struct {
 	MaxConnDuration time.Duration
 
 	// 最大重试次数
-	MaxIdemponentCallAttempts int
+	MaxIdempotentCallAttempts int
 
 	// 每个连接的读缓存大小，会限制最大header长度
 	ReadBufferSize int
@@ -88,7 +88,7 @@ func New(opt *Options) *HttpClient {
 		MaxConnsPerHost:           opt.MaxConnsPerHost,
 		MaxIdleConnDuration:       opt.MaxIdleConnDuration,
 		MaxConnDuration:           opt.MaxConnDuration,
-		MaxIdemponentCallAttempts: opt.MaxIdemponentCallAttempts,
+		MaxIdemponentCallAttempts: opt.MaxIdempotentCallAttempts,
 		ReadBufferSize:            opt.ReadBufferSize,
 		WriteBufferSize:           opt.WriteBufferSize,
 		ReadTimeout:               opt.ReadTimeout,

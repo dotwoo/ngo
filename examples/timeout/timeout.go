@@ -96,7 +96,7 @@ func panic(c *gin.Context) {
 }
 
 // A cancelCtx can be canceled.
-// When canceled, it also cancels any children that implement canceler.
+// When canceled, it also cancels any children that implement cancel.
 func doSomething(ctx context.Context) bool {
 	select {
 	case <-ctx.Done():

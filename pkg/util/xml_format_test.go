@@ -52,7 +52,7 @@ func TestMarshalIndent_(t *testing.T) {
 	assert.Equal(t, "", cur, "")
 }
 
-//模拟序列化失败，返回空字符串
+// 模拟序列化失败，返回空字符串
 func TestMarshalIndentErr(t *testing.T) {
 	stu := Student2{
 		Name: "陈奕迅<Name>",
@@ -80,7 +80,7 @@ func TestUnmarshalIndent(t *testing.T) {
 	assert.Equal(t, expected, actual, "")
 }
 
-//反序列化失败，err=nil
+// 反序列化失败，err=nil
 func TestUnmarshalIndent_(t *testing.T) {
 	ss := Student{}
 	s := `<Name>陈奕迅</Name>
@@ -92,7 +92,7 @@ func TestUnmarshalIndent_(t *testing.T) {
 	assert.Equal(t, ss, actual, "")
 }
 
-//反序列化失败，err!=nil
+// 反序列化失败，err!=nil
 func TestUnmarshalIndentErr(t *testing.T) {
 	ss := Student{}
 	s := `<Name>陈奕迅</Name>
@@ -104,10 +104,10 @@ func TestUnmarshalIndentErr(t *testing.T) {
 	assert.NotEqual(t, ss, actual)
 }
 
-//辅助方法，模拟err不为nil时的处理逻辑
+// 辅助方法，模拟err不为nil时的处理逻辑
 func MarshalIndentHelperTest(v interface{}, prefix, indent string) string {
-	data, err := xml.MarshalIndent(v, prefix, indent)
-	err = errors.New("testxff")
+	data, _ := xml.MarshalIndent(v, prefix, indent)
+	err := errors.New("test err")
 	if err != nil {
 		log.Println("xml不能序列化")
 		return ""

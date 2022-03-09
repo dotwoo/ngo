@@ -39,14 +39,14 @@ func Join(list []string, symbol Symbol) string {
 	if len(list) == 0 {
 		return string(Empty)
 	}
-	var l []string
-	for _, v := range list {
-		// if v == "" { // 过滤掉为空的数据
-		// 	continue  // 先去掉兼容java工程
-		// }
-		l = append(l, v)
-	}
-	r := strings.Join(l, string(symbol))
+	// var l []string
+	// for _, v := range list {
+	// 	// if v == "" { // 过滤掉为空的数据
+	// 	// 	continue  // 先去掉兼容java工程
+	// 	// }
+	// 	l = append(l, v)
+	// }
+	r := strings.Join(list, string(symbol))
 	return strings.Trim(r, string(Blank))
 }
 

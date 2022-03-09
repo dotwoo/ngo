@@ -33,7 +33,7 @@ const (
 
 var ignorePkgMap map[string]struct{}
 
-func init() {
+func init() { //nolint:gochecknoinits
 	ignorePkgMap = make(map[string]struct{})
 	ignorePkgMap[utilPkgName] = struct{}{}
 }
@@ -106,7 +106,7 @@ out:
 	return buf.Bytes(), nil
 }
 
-func getPackageName(f string) (pkg, funtion string) {
+func getPackageName(f string) (pkg, fn string) {
 	dotID := len(f)
 	for {
 		lastPeriod := strings.LastIndex(f[:dotID], ".")

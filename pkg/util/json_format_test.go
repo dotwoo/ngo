@@ -29,7 +29,7 @@ type Stu struct {
 	Sex  string `json:"sex"`
 }
 
-//序列化成功
+// 序列化成功
 func TestMarshal(t *testing.T) {
 	stu := Stu{
 		Name: "陈奕迅",
@@ -42,15 +42,15 @@ func TestMarshal(t *testing.T) {
 	assert.Equal(t, expect, actual, "json序列化不符合预期")
 }
 
-//序列化失败,err!=nil
+// 序列化失败,err!=nil
 func TestMarshalErr(t *testing.T) {
 	c := make(chan int, 1)
 	cur, _ := Marshal(c)
 	assert.Equal(t, "", cur, "")
 }
 
-//反序列化成功
-func TestUnmarsha(t *testing.T) {
+// 反序列化成功
+func TestUnmarshal(t *testing.T) {
 	actual := Stu{}
 	expected := Stu{
 		Name: "陈奕迅",
@@ -64,8 +64,8 @@ func TestUnmarsha(t *testing.T) {
 	assert.Equal(t, expected, actual, "")
 }
 
-//反序列化失败，err!=nil
-func TestUnmarshaErr(t *testing.T) {
+// 反序列化失败，err!=nil
+func TestUnmarshalErr(t *testing.T) {
 	ss := Stu{}
 	stu := Stu{}
 	data := "{\"name\":\"陈奕迅\",\"age\":47,\"high\":\"173cm\",\"sex\":\"男\""

@@ -33,7 +33,7 @@ func Decode(query string) string {
 	return rs
 }
 
-//EncodeEscape 处理<p>a=10&b=100&c=</p>
+// EncodeEscape 处理<p>a=10&b=100&c=</p>
 // 但是其中的'&' and '=' 不做处理
 // 原生的方式自己可以通过<p>url.Values</p>自行处理
 func EncodeEscape(query string) string {

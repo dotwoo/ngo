@@ -18,8 +18,8 @@ import (
 	"sync"
 )
 
-// RunParalell 并行运行指定函数
-func RunParalell(n int, f func()) {
+// RunParallel 并行运行指定函数
+func RunParallel(n int, f func()) {
 	wg := &sync.WaitGroup{}
 	for i := 0; i < n; i++ {
 		wg.Add(1)
