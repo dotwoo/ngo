@@ -20,7 +20,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/NetEase-Media/ngo/pkg/util"
+	"github.com/NetEase-Media/ngo/g"
 )
 
 func BenchmarkHTTP_1Conn_1Delay(b *testing.B) {
@@ -74,7 +74,7 @@ func testRunBench(b *testing.B, n int, blockMS int) {
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
 			_, err := c.Get(s.URL).doInternal()
-			util.CheckError(err)
+			g.CheckError(err)
 		}
 	})
 }

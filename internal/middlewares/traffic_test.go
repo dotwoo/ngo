@@ -40,7 +40,7 @@ func TestTrafficStop(t *testing.T) {
 	go r.ServeHTTP(w, req)
 
 	time.Sleep(500 * time.Millisecond)
-	assert.False(t, requestsFinished())
+	assert.False(t, RequestsFinished())
 	time.Sleep(800 * time.Millisecond)
-	assert.True(t, requestsFinished())
+	assert.True(t, RequestsFinished())
 }
