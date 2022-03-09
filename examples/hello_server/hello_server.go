@@ -20,11 +20,11 @@ import (
 	"net/http"
 	"net/http/httptest"
 
-	"github.com/NetEase-Media/ngo/adapter/sentinel"
+	"github.com/NetEase-Media/ngo/pkg/adapter/sentinel"
 
-	"github.com/NetEase-Media/ngo/adapter/log"
-	"github.com/NetEase-Media/ngo/adapter/protocol"
-	"github.com/NetEase-Media/ngo/client/httplib"
+	"github.com/NetEase-Media/ngo/pkg/adapter/log"
+	"github.com/NetEase-Media/ngo/pkg/adapter/protocol"
+	"github.com/NetEase-Media/ngo/pkg/client/httplib"
 	"github.com/NetEase-Media/ngo/server"
 	"github.com/gin-gonic/gin"
 )

@@ -17,11 +17,11 @@ package main
 import (
 	"net/http"
 
-	"github.com/NetEase-Media/ngo/adapter/log"
+	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/NetEase-Media/ngo/client/kafka"
+	"github.com/NetEase-Media/ngo/pkg/client/kafka"
 	"github.com/NetEase-Media/ngo/server"
 )
 

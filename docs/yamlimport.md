@@ -20,7 +20,7 @@
 #### 加载配置文件目录下的其他配置文件
 ```go
 // 导包
-import "github.com/NetEase-Media/ngo/adapter/config"
+import "github.com/NetEase-Media/ngo/pkg/adapter/config"
 
 
 // 读取配置目录中viper支持的文件，例如:json,yaml,yml,toml,properties,props,prop,hcl,ini等
@@ -63,7 +63,7 @@ kafka1:
 可以再代码中用以下方法获取配置
 ```go
 //导包
-import "github.com/NetEase-Media/ngo/adapter/config"
+import "github.com/NetEase-Media/ngo/pkg/adapter/config"
 
 //获取为自定义的struct
 config.Unmarshal("kafka1", kafkaStructPointer)

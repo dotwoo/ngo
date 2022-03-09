@@ -17,7 +17,7 @@ package util
 import (
 	"encoding/xml"
 
-	"github.com/NetEase-Media/ngo/adapter/log"
+	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 )
 
 // xml序列化：将struct类型序列化成xml类型。 若成功，则输出xml的字符串；否则输出""

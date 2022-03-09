@@ -15,8 +15,8 @@
 package main
 
 import (
-	"github.com/NetEase-Media/ngo/adapter/protocol"
-	"github.com/NetEase-Media/ngo/adapter/sentinel"
+	"github.com/NetEase-Media/ngo/pkg/adapter/protocol"
+	"github.com/NetEase-Media/ngo/pkg/adapter/sentinel"
 	"github.com/NetEase-Media/ngo/server"
 	"github.com/gin-gonic/gin"
 )

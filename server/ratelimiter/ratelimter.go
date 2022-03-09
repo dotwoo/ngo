@@ -17,7 +17,7 @@ package ratelimiter
 import (
 	"net/http"
 
-	"github.com/NetEase-Media/ngo/adapter/sentinel"
+	"github.com/NetEase-Media/ngo/pkg/adapter/sentinel"
 	"github.com/gin-gonic/gin"
 )
 

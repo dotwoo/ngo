@@ -17,7 +17,7 @@ package server
 import (
 	"errors"
 
-	"github.com/NetEase-Media/ngo/adapter/log"
+	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 )
 
 var serviceOptions ServiceOptions // TODO: 这个可能需要放到server内

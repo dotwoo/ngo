@@ -22,8 +22,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/xxl-job/xxl-job-executor-go"
 
-	"github.com/NetEase-Media/ngo/adapter/protocol"
-	"github.com/NetEase-Media/ngo/adapter/xxljob"
+	"github.com/NetEase-Media/ngo/pkg/adapter/protocol"
+	"github.com/NetEase-Media/ngo/pkg/adapter/xxljob"
 	"github.com/NetEase-Media/ngo/server"
 )
 

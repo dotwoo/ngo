@@ -17,7 +17,7 @@ package util
 import (
 	"encoding/json"
 
-	"github.com/NetEase-Media/ngo/adapter/log"
+	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 )
 
 // json序列化:将struct类型转换成string类型。 若不能序列化，返回""; 否则返回序列化后的string类型结果

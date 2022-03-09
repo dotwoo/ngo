@@ -18,8 +18,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/NetEase-Media/ngo/adapter/log"
-	"github.com/NetEase-Media/ngo/client/redis"
+	"github.com/NetEase-Media/ngo/pkg/adapter/log"
+	"github.com/NetEase-Media/ngo/pkg/client/redis"
 	"github.com/NetEase-Media/ngo/server"
 )
 

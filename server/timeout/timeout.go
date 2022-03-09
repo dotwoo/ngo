@@ -19,7 +19,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/NetEase-Media/ngo/adapter/log"
+	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 	"github.com/gin-gonic/gin"
 )
 

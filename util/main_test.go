@@ -14,7 +14,7 @@
 
 package util
 
-import "github.com/NetEase-Media/ngo/client/httplib"
+import "github.com/NetEase-Media/ngo/pkg/client/httplib"
 
 func init() {
 	httplib.Init(httplib.NewDefaultOptions())

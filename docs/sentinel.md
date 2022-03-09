@@ -60,7 +60,7 @@ sentinel:
 规则参数描述，在官方文档中已经写的很清楚了，这里不在配置文件上加了。
 
 ```
-import github.com/NetEase-Media/ngo/adapter/sentinel
+import github.com/NetEase-Media/ngo/pkg/adapter/sentinel
 
 sentinel.Entry("abc")
 sentinel.TraceError(entry, err)

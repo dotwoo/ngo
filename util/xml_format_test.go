@@ -19,7 +19,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/NetEase-Media/ngo/adapter/log"
+	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 
 	"github.com/stretchr/testify/assert"
 )

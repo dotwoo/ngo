@@ -18,9 +18,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/NetEase-Media/ngo/adapter/log"
+	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 
-	"github.com/NetEase-Media/ngo/client/db"
+	"github.com/NetEase-Media/ngo/pkg/client/db"
 	"github.com/NetEase-Media/ngo/server"
 )
 

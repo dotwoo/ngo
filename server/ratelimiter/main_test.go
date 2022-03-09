@@ -18,7 +18,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/NetEase-Media/ngo/adapter/sentinel"
+	"github.com/NetEase-Media/ngo/pkg/adapter/sentinel"
 	"github.com/alibaba/sentinel-golang/core/flow"
 )
 

@@ -19,7 +19,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/NetEase-Media/ngo/adapter/util"
+	"github.com/NetEase-Media/ngo/pkg/adapter/util"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 )

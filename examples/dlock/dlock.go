@@ -17,7 +17,7 @@ package main
 import (
 	"sync"
 
-	"github.com/NetEase-Media/ngo/dlock"
+	"github.com/NetEase-Media/ngo/pkg/dlock"
 
 	"github.com/NetEase-Media/ngo/server"
 	"github.com/gin-gonic/gin"

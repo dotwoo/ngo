@@ -1,4 +1,5 @@
-//+build !race
+//go:build !race
+// +build !race
 
 // Copyright Ngo Authors
 //
@@ -27,7 +28,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/NetEase-Media/ngo/adapter/log"
+	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
