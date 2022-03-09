@@ -21,9 +21,9 @@ import (
 	_ "net/http/pprof"
 	"time"
 
-	"github.com/NetEase-Media/ngo/server"
+	"github.com/NetEase-Media/ngo/internal/server"
 
-	"github.com/NetEase-Media/ngo/server/timeout"
+	"github.com/NetEase-Media/ngo/internal/server/timeout"
 	"github.com/gin-gonic/gin"
 )
 

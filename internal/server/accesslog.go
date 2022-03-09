@@ -23,7 +23,7 @@ import (
 
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 
-	"github.com/NetEase-Media/ngo/server/accesslog"
+	"github.com/NetEase-Media/ngo/internal/server/accesslog"
 
 	"github.com/gin-gonic/gin"
 )

@@ -17,8 +17,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/NetEase-Media/ngo/server"
-	"github.com/NetEase-Media/ngo/server/ratelimiter"
+	"github.com/NetEase-Media/ngo/internal/server"
+	"github.com/NetEase-Media/ngo/internal/server/ratelimiter"
 	"github.com/gin-gonic/gin"
 )
 

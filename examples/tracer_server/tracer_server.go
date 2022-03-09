@@ -22,9 +22,9 @@ import (
 	"strconv"
 
 	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/NetEase-Media/ngo/internal/server"
 	"github.com/NetEase-Media/ngo/pkg/adapter/protocol"
 	"github.com/NetEase-Media/ngo/pkg/client/db"
-	"github.com/NetEase-Media/ngo/server"
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

@@ -19,7 +19,7 @@ import (
 
 	"github.com/NetEase-Media/ngo/pkg/dlock"
 
-	"github.com/NetEase-Media/ngo/server"
+	"github.com/NetEase-Media/ngo/internal/server"
 	"github.com/gin-gonic/gin"
 )
 

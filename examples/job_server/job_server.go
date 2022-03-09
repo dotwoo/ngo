@@ -19,9 +19,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
+	"github.com/NetEase-Media/ngo/internal/server"
 	"github.com/NetEase-Media/ngo/pkg/adapter/job"
 	"github.com/NetEase-Media/ngo/pkg/adapter/log"
-	"github.com/NetEase-Media/ngo/server"
 )
 
 // go run . -c ./config.yaml

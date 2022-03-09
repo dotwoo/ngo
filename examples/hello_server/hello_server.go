@@ -22,10 +22,10 @@ import (
 
 	"github.com/NetEase-Media/ngo/pkg/adapter/sentinel"
 
+	"github.com/NetEase-Media/ngo/internal/server"
 	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 	"github.com/NetEase-Media/ngo/pkg/adapter/protocol"
 	"github.com/NetEase-Media/ngo/pkg/client/httplib"
-	"github.com/NetEase-Media/ngo/server"
 	"github.com/gin-gonic/gin"
 )
 

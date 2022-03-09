@@ -18,9 +18,9 @@ import (
 	"context"
 	"time"
 
+	"github.com/NetEase-Media/ngo/internal/server"
 	"github.com/NetEase-Media/ngo/pkg/adapter/log"
 	"github.com/NetEase-Media/ngo/pkg/client/redis"
-	"github.com/NetEase-Media/ngo/server"
 )
 
 var (
